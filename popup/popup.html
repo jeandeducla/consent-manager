@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="popup.css"/>
+  </head>
+
+<body>
+  <div id="popup-content">
+    <form>
+        <p>Choose your global cookie consent</p>
+        <div>
+            <input type="radio" id="consentChoice1"
+                   name="consent-choice" value="DO_NOTHING">
+            <label for="consentChoice1">do nothing</label>
+
+            <input type="radio" id="consentChoice2"
+                   name="consent-choice" value="REJECT_ALL">
+            <label for="consentChoice2">reject all</label>
+
+            <input type="radio" id="consentChoice3"
+                   name="consent-choice" value="ACCEPT_ALL">
+            <label for="consentChoice3">accept all</label>
+        </div>
+        <div>
+            <button type="submit">apply</button>
+        </div>
+    </form>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
