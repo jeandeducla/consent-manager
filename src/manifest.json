@@ -3,7 +3,7 @@
     "name": "content-manager",
     "version": "1.0",
 
-    "description": "globally manage your privacy choices on internet",
+    "description": "Globally manage your consent on the internet",
 
     "icons": {
         "48": "icons/icon48.png"

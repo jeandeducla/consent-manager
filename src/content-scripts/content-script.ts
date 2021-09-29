@@ -1,17 +1,18 @@
+import { onError } from '../utils/log';
+import { STORAGE_KEY, Strategy } from '../utils/types';
+
 const DIDOMI_REJECT_ALL_SELECTOR = ".didomi-continue-without-agreeing";
 const DIDOMI_ACCEPT_ALL_SELECTOR = ".didomi-dismiss-button";
 
-function onError(error) {
-    console.log(error);
+function handleCanvas(canvas: Element) {
+    if (canvas instanceof HTMLElement) {
+        console.log(canvas);
+        console.log(canvas.innerText);
+        // canvas.click();
+    }
 }
 
-function handleCanvas(canvas) {
-    console.log(canvas);
-    console.log(canvas.innerText);
-    // canvas.click();
-}
-
-function findConsentButton(selector) {
+function findConsentButton(selector: string) {
     var observer = new MutationObserver(function (_, me) {
         var canvas = document.querySelector(selector);
         if (canvas) {
@@ -26,28 +27,28 @@ function findConsentButton(selector) {
     });
 }
 
-function applyStrategy(strategy) {
+function applyStrategy(strategy: string) {
     switch (strategy) {
-        case "REJECT_ALL":
+        case Strategy.REJECT_ALL:
             console.log("We will reject all consent");
             findConsentButton(DIDOMI_REJECT_ALL_SELECTOR);
             break;
-        case "ACCEPT_ALL":
+        case Strategy.ACCEPT_ALL:
             console.log("We will accept all consent");
             findConsentButton(DIDOMI_ACCEPT_ALL_SELECTOR);
             break;
-        case "DO_NOTHING":
+        case Strategy.DO_NOTHING:
             console.log("We will let you decide");
             break;
         default:
-            console.log("default");
+            console.log("should not come here");
             break;
     }
 }
 
-function onStrategyChange(changes, _) {
-    if (changes["consentStrategy"].oldValue === "DO_NOTHING" && changes["consentStrategy"].newValue !== "DO_NOTHING") {
-        applyStrategy(changes["consentStrategy"].newValue);
+function onStrategyChange(changes: any, _: any) {
+    if (changes[STORAGE_KEY].oldValue === Strategy.DO_NOTHING && changes[STORAGE_KEY].newValue !== Strategy.DO_NOTHING) {
+        applyStrategy(changes[STORAGE_KEY].newValue);
     }
 }
 
@@ -60,5 +61,5 @@ browser.storage.onChanged.addListener(onStrategyChange);
 get application setting and apply consent strategy
 */ 
 browser.storage.local.get()
-    .then((strategy) => applyStrategy(strategy["consentStrategy"]))
+    .then((strategy) => applyStrategy(strategy[STORAGE_KEY]))
     .catch(onError);
