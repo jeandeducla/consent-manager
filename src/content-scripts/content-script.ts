@@ -1,23 +1,35 @@
 import { onError } from '../utils/log';
 import { STORAGE_KEY, Strategy } from '../utils/types';
+import { Axeptio } from './axeptio';
+import { Didomi } from './didomi';
 
-const DIDOMI_REJECT_ALL_SELECTOR = ".didomi-continue-without-agreeing";
-const DIDOMI_ACCEPT_ALL_SELECTOR = ".didomi-dismiss-button";
-
-function handleCanvas(canvas: Element) {
-    if (canvas instanceof HTMLElement) {
-        console.log(canvas);
-        console.log(canvas.innerText);
-        // canvas.click();
-    }
+// TODO:
+// - handle null case: we should return an error and default to doing nothing if we don't find the button
+export interface TandCSelector {
+    selectAcceptAllBtn: () => HTMLElement | null
+    selectRejectAllBtn: () => HTMLElement | null
 }
 
-function findConsentButton(selector: string) {
+// TODO:
+// - handle case of not finding a TandCManager
+/*
+detect the appropriate consent manager for the current page we're on
+*/ 
+function detectTCManager(): TandCSelector {
+    return Didomi;
+}
+
+var tcSelector = detectTCManager();
+
+/*
+wrapper that waits for DOM to fully load to select the targeted button
+*/ 
+function domMutationObserver(btnSelector: () => HTMLElement | null) {
     var observer = new MutationObserver(function (_, me) {
-        var canvas = document.querySelector(selector);
-        if (canvas) {
+        var btn = btnSelector();
+        if (btn) {
             me.disconnect();
-            handleCanvas(canvas);
+            handleConsentBtn(btn);
             return
         }
     });
@@ -27,15 +39,26 @@ function findConsentButton(selector: string) {
     });
 }
 
+/*
+handles action to execute on the button we found
+*/ 
+function handleConsentBtn(btn: HTMLElement) {
+    console.log(btn);
+    // btn.click();
+}
+
+/*
+apply the current consent strategy 
+*/ 
 function applyStrategy(strategy: string) {
     switch (strategy) {
         case Strategy.REJECT_ALL:
             console.log("We will reject all consent");
-            findConsentButton(DIDOMI_REJECT_ALL_SELECTOR);
+            domMutationObserver(tcSelector.selectRejectAllBtn);
             break;
         case Strategy.ACCEPT_ALL:
             console.log("We will accept all consent");
-            findConsentButton(DIDOMI_ACCEPT_ALL_SELECTOR);
+            domMutationObserver(tcSelector.selectAcceptAllBtn);
             break;
         case Strategy.DO_NOTHING:
             console.log("We will let you decide");
@@ -47,6 +70,7 @@ function applyStrategy(strategy: string) {
 }
 
 function onStrategyChange(changes: any, _: any) {
+    console.log("strategy changed");
     if (changes[STORAGE_KEY].oldValue === Strategy.DO_NOTHING && changes[STORAGE_KEY].newValue !== Strategy.DO_NOTHING) {
         applyStrategy(changes[STORAGE_KEY].newValue);
     }
