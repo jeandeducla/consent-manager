@@ -6,8 +6,10 @@
   "license": "ISC",
   "homepage": "https://github.com/jeandeducla/consent-manager#readme",
   "scripts": {
-    "prebuild": "rm -rf build",
+    "prebuild": "npm run clean",
+    "prebuild:debug": "npm run clean",
     "build": "parcel build src/**/* --out-dir build --no-source-maps && cp src/manifest.json build",
+    "build:debug": "parcel build src/**/* --out-dir build && cp src/manifest.json build",
     "clean": "rm -rf build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
