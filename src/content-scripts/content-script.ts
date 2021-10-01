@@ -9,8 +9,8 @@ import { Didomi } from './didomi';
 // - all element Should be promise
 export interface TCManager {
     // TODO: maybe should not be a function
-    selectAcceptAllBtn: () => HTMLElement | null
-    selectRejectAllBtn: () => HTMLElement | null
+    selectAcceptAllBtn: Promise<HTMLElement>
+    selectRejectAllBtn: Promise<HTMLElement>
     isHere: Promise<boolean>
     name: string
 }
@@ -50,12 +50,12 @@ detectTCManager().
             switch (strategy) {
                 case Strategy.REJECT_ALL:
                     console.log("We will reject all consent");
-                    waitForDOMElement(tcManager.selectRejectAllBtn)
+                    tcManager.selectRejectAllBtn
                         .then((el) => handleConsentBtn(el));
                     break;
                 case Strategy.ACCEPT_ALL:
                     console.log("We will accept all consent");
-                    waitForDOMElement(tcManager.selectAcceptAllBtn)
+                    tcManager.selectAcceptAllBtn
                         .then((el) => handleConsentBtn(el));
                     break;
                 case Strategy.DO_NOTHING:
