@@ -1,24 +1,54 @@
-// TODO:
-// - add a timeout
 /*
 wrapper that waits for DOM to fully load to select the targeted button
 */ 
 export function waitForDOMElement(selector: () => HTMLElement | null): Promise<HTMLElement> {
     return new Promise((resolve, _) => {
+        // check if we have a direct answer
         var el = selector();
         if (el) {
             resolve(el);
         }
-        new MutationObserver((_, observer) => {
+        // check if we have a direct answer
+        let observer = new MutationObserver((_, observer) => {
             var el = selector();
             if (el) {
-                resolve(el);
                 observer.disconnect();
+                resolve(el);
             }
-        })
-        .observe(document, {
+        });
+        observer.observe(document, {
             childList: true,
             subtree: true
         });
     });
+}
+
+/*
+A timeout wrapper for promises
+*/ 
+export class PromiseTimeOut {
+    timeoutPromise: Promise<never>;
+    id: number | undefined;
+
+    constructor(delay: number) {
+        let id;
+        this.timeoutPromise = new Promise((_, reject) => {
+            id = setTimeout(() => reject(), delay);
+        });
+        this.id = id;
+    }
+
+    wrap<T>(promise: Promise<T>): Promise<T> {
+        return Promise.race([
+            promise,
+            this.timeoutPromise
+        ])
+        .finally(() => this.clear());
+    }
+
+    clear() {
+        if (!this.id) {
+            clearTimeout(this.id);
+        }
+    }
 }
