@@ -2,15 +2,15 @@
 wrapper that waits for DOM to fully load to select the targeted button
 */ 
 export function waitForDOMElement(selector: () => HTMLElement | null): Promise<HTMLElement> {
-    return new Promise((resolve, _) => {
+    return new Promise((resolve) => {
         // check if we have a direct answer
-        var el = selector();
+        const el = selector();
         if (el) {
             resolve(el);
         }
         // check if we have a direct answer
-        let observer = new MutationObserver((_, observer) => {
-            var el = selector();
+        const observer = new MutationObserver((_, observer) => {
+            const el = selector();
             if (el) {
                 observer.disconnect();
                 resolve(el);

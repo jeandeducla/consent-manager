@@ -4,4 +4,4 @@ export enum Strategy {
     DO_NOTHING = "DO_NOTHING",
 }
 
-export var STORAGE_KEY = "consent-manager";
+export const STORAGE_KEY = "consent-manager";

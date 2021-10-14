@@ -24,7 +24,8 @@ detectTCManager().
         handle consent strategy changes
         */ 
         browser.storage.onChanged.addListener((changes: any) => {
-            if (changes[STORAGE_KEY].oldValue === Strategy.DO_NOTHING && changes[STORAGE_KEY].newValue !== Strategy.DO_NOTHING) {
+            if (changes[STORAGE_KEY].oldValue === Strategy.DO_NOTHING &&
+                changes[STORAGE_KEY].newValue !== Strategy.DO_NOTHING) {
                 tcManager.applyStrategy(changes[STORAGE_KEY].newValue);
             }
         });
