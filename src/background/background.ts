@@ -11,8 +11,8 @@ function initStrategy(strategy: { [key: string]: any }) {
 }
 
 /*
-initialize application
-*/ 
+ * initialize application
+ */ 
 browser.storage.local.get()
     .then(initStrategy)
     .catch(onError);

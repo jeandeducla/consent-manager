@@ -26,15 +26,15 @@ function storeSetting() {
 }
 
 /*
-Update UI with last selected value when opening popup
-*/ 
+ * update UI with last selected value when opening popup
+ */ 
 browser.storage.local.get()
     .then(updateUI)
     .catch(onError);
 
 /*
-On submitting form, store new setting 
-*/ 
+ * on submitting form, store new setting 
+ */ 
 const form = document.querySelector("form");
 if (form) {
     form.addEventListener("submit", storeSetting);

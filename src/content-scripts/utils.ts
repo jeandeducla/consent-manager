@@ -1,6 +1,6 @@
 /*
-wrapper that waits for DOM to fully load to select the targeted button
-*/ 
+ * wrapper that waits for DOM to fully load to select the targeted button
+ */ 
 export function waitForDOMElement(selector: () => HTMLElement | null): Promise<HTMLElement> {
     return new Promise((resolve) => {
         // check if we have a direct answer
@@ -24,8 +24,8 @@ export function waitForDOMElement(selector: () => HTMLElement | null): Promise<H
 }
 
 /*
-A timeout wrapper for promises
-*/ 
+ * a timeout wrapper for promises
+ */ 
 export class PromiseTimeOut {
     timeoutPromise: Promise<never>;
     id: number | undefined;

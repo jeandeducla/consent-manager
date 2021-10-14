@@ -43,8 +43,8 @@ export class TCManager {
     }
 
     /*
-    handles action to execute on the button we found
-    */ 
+     * handles action to execute on the button we found
+     */ 
     handleConsentBtn(btn: HTMLElement) {
         console.log(btn);
         // btn.click();
