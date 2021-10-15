@@ -2,7 +2,7 @@ import { onError } from '../utils/log';
 import { STORAGE_KEY } from '../utils/types';
 
 function updateUI(strategy: { [key: string]: any }) {
-    var radios = document.getElementsByName("consent-choice");
+    const radios = document.getElementsByName("consent-choice");
     for (const rb of radios) {
        if (rb instanceof HTMLInputElement) {
             if (rb.value === strategy[STORAGE_KEY]) {
@@ -13,7 +13,7 @@ function updateUI(strategy: { [key: string]: any }) {
 }
 
 function storeSetting() {
-    var radios = document.getElementsByName("consent-choice");
+    const radios = document.getElementsByName("consent-choice");
     for (const rb of radios) {
        if (rb instanceof HTMLInputElement) {
            if (rb.checked === true) {
@@ -26,16 +26,16 @@ function storeSetting() {
 }
 
 /*
-Update UI with last selected value when opening popup
-*/ 
+ * update UI with last selected value when opening popup
+ */ 
 browser.storage.local.get()
     .then(updateUI)
     .catch(onError);
 
 /*
-On submitting form, store new setting 
-*/ 
-var form = document.querySelector("form");
+ * on submitting form, store new setting 
+ */ 
+const form = document.querySelector("form");
 if (form) {
     form.addEventListener("submit", storeSetting);
 }

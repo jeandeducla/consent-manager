@@ -13,13 +13,13 @@ export class TCManager {
                 console.log("We will reject all consent");
                 this.selectRejectAllBtn()
                     .then((el) => this.handleConsentBtn(el))
-                    .catch((_) => console.log("Reject all error"));
+                    .catch(() => console.log("Reject all error"));
                 break;
             case Strategy.ACCEPT_ALL:
                 console.log("We will accept all consent");
                 this.selectAcceptAllBtn()
                     .then((el) => this.handleConsentBtn(el))
-                    .catch((_) => console.log("accept all error"));
+                    .catch(() => console.log("accept all error"));
                 break;
             case Strategy.DO_NOTHING:
                 console.log("We will let you decide");
@@ -43,8 +43,8 @@ export class TCManager {
     }
 
     /*
-    handles action to execute on the button we found
-    */ 
+     * handles action to execute on the button we found
+     */ 
     handleConsentBtn(btn: HTMLElement) {
         console.log(btn);
         // btn.click();

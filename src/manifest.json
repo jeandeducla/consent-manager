@@ -1,35 +1,35 @@
 {
-    "manifest_version": 2,
+  "manifest_version": 2,
     "name": "content-manager",
     "version": "1.0",
 
     "description": "Globally manage your consent on the internet",
 
     "icons": {
-        "48": "icons/icon48.png"
+      "48": "icons/icon48.png"
     },
 
     "browser_action": {
-        "default_icon": "icons/icon32.png",
-        "default_title": "constent-manager",
-        "default_popup": "popup/popup.html"
+      "default_icon": "icons/icon32.png",
+      "default_title": "constent-manager",
+      "default_popup": "popup/popup.html"
     },
 
     "permissions": [
-        "<all_urls>",
-        "storage",
-        "activeTab",
-        "tabs"
+      "<all_urls>",
+      "storage",
+      "activeTab",
+      "tabs"
     ],
 
     "background": {
-        "scripts": ["background/background.js"]
+      "scripts": ["background/background.js"]
     },
 
     "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["content-scripts/content-script.js"]
-        }
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content-scripts/content-script.js"]
+      }
     ]
 }
