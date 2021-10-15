@@ -11,5 +11,6 @@
   ],
   "rules": {
       "max-len": 1,
+      "multiline-comment-style": ["error", "starred-block"]
   }
 }
