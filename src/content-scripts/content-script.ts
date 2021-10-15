@@ -9,7 +9,6 @@ const TCManagers = [
     new Didomi(),
 ];
 
-
 /* 
  * detect the appropriate consent manager for the current page we're on
  */ 
