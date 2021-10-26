@@ -2,3 +2,4 @@ node_modules/
 build/
 .cache/
 todo.md
+package-lock.json
