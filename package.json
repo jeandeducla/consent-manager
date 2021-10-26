@@ -9,8 +9,8 @@
     "lint": "eslint src/ --ext .ts",
     "prebuild": "npm run clean && npm run lint",
     "prebuild:debug": "npm run clean",
-    "build": "parcel build src/**/* --dist-dir build --no-source-maps && cp src/manifest.json build",
-    "build:debug": "parcel build src/**/* --dist-dir build && cp src/manifest.json build",
+    "build": "parcel build src/manifest.json --dist-dir build",
+    "build:debug": "parcel build src/manifest.json --dist-dir build",
     "clean": "rm -rf build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +25,7 @@
     "since 2017-06"
   ],
   "devDependencies": {
+    "@parcel/config-webextension": "^2.0.0",
     "@types/firefox-webext-browser": "^82.0.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",

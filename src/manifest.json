@@ -23,13 +23,13 @@
     ],
 
     "background": {
-      "scripts": ["background/background.js"]
+      "scripts": ["background/background.ts"]
     },
 
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["content-scripts/content-script.js"]
+        "js": ["content-scripts/content-script.ts"]
       }
     ]
 }
