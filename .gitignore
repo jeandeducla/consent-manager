@@ -3,3 +3,4 @@ build/
 .cache/
 todo.md
 package-lock.json
+.parcel-cache/
