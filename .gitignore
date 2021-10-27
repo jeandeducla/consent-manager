@@ -1,4 +1,6 @@
 node_modules/
-build/
+dist/
 .cache/
 todo.md
+package-lock.json
+.parcel-cache/
