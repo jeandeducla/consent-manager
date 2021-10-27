@@ -5,13 +5,21 @@
   "author": "jean.deducla@gmail.com",
   "license": "ISC",
   "homepage": "https://github.com/jeandeducla/consent-manager#readme",
+  "targets": {
+    "debug": {},
+    "prod": {
+      "sourceMap": false
+    }
+  },
+  "source": "src/manifest.json",
   "scripts": {
     "lint": "eslint src/ --ext .ts",
+    "clean": "rm -rf dist/prod",
     "prebuild": "npm run clean && npm run lint",
-    "prebuild:debug": "npm run clean",
-    "build": "parcel build src/manifest.json --dist-dir build",
-    "build:debug": "parcel build src/manifest.json --dist-dir build",
-    "clean": "rm -rf build",
+    "build": "parcel build --target prod",
+    "clean:debug": "rm -rf dist/debug",
+    "prebuild:debug": "npm run clean:debug",
+    "build:debug": "parcel build --target debug",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
