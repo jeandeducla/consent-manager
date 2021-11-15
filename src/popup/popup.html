@@ -8,23 +8,40 @@
 
 <body>
   <div id="popup-content">
+
+    <div id="popup-title">
+        <p>consent manager</p>
+    </div>
+
     <form>
-        <p>Choose your global cookie consent</p>
-        <div>
-            <input type="radio" id="consentChoice1"
-                   name="consent-choice" value="DO_NOTHING">
-            <label for="consentChoice1">do nothing</label>
+        <div id="form-content">
+            <div id="form-title">
+                <p>Choose your global cookie consent policy</p>
+            </div>
 
-            <input type="radio" id="consentChoice2"
-                   name="consent-choice" value="REJECT_ALL">
-            <label for="consentChoice2">reject all</label>
+            <div id="input-form">
+                <div>
+                    <input type="radio" id="consentChoice1"
+                           name="consent-choice" value="DO_NOTHING">
+                    <label for="consentChoice1">do nothing</label>
+                </div>
 
-            <input type="radio" id="consentChoice3"
-                   name="consent-choice" value="ACCEPT_ALL">
-            <label for="consentChoice3">accept all</label>
-        </div>
-        <div>
-            <button type="submit">apply</button>
+                <div>
+                    <input type="radio" id="consentChoice2"
+                           name="consent-choice" value="REJECT_ALL">
+                    <label for="consentChoice2">reject all</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="consentChoice3"
+                           name="consent-choice" value="ACCEPT_ALL">
+                    <label for="consentChoice3">accept all</label>
+                </div>
+            </div>
+
+            <div id="button-apply">
+                <button type="submit">apply</button>
+            </div>
         </div>
     </form>
   </div>
