@@ -2,11 +2,17 @@ import { onError } from '../utils/log';
 import { STORAGE_KEY } from '../utils/types';
 
 function updateUI(strategy: { [key: string]: any }) {
-    const radios = document.getElementsByName("consent-choice");
-    for (const rb of radios) {
+    const choices = document.getElementsByClassName("consentChoices");
+    console.log(choices);
+    for (const choice of choices) {
+       // TODO: remove that
+       let rb = choice.childNodes[1];
        if (rb instanceof HTMLInputElement) {
             if (rb.value === strategy[STORAGE_KEY]) {
                 rb.checked = true;
+                choice.classList.add("checked");
+            } else {
+                choice.classList.remove("checked");
             }
        }
     }

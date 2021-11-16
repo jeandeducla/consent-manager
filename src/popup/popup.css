@@ -93,15 +93,51 @@ form {
   cursor: pointer;
 }
 
-#input-form > div:hover {
-  color: var(--grey-5);
-  background-color: var(--grey-4);
+#input-form > div.consentChoice1:hover {
+  color: var(--black);
+  background-color: #FEE5B6;
+  border: 2px solid #F3CE8F;
+}
+#input-form > div.consentChoice1:focus-within {
+  color: var(--black);
+  background-color: #FEE5B6;
+}
+#input-form > div.consentChoice1.checked {
+  color: var(--black);
+  background-color: #FEE5B6;
+  border: 2px solid #F3CE8F;
 }
 
-#input-form > div:focus-within {
-  color: var(--grey-1);
-  background-color: var(--grey-5);
+#input-form > div.consentChoice2:hover {
+  color: var(--black);
+  background-color: #FF8989;
+  border: 2px solid #FF6962;
 }
+#input-form > div.consentChoice2:focus-within {
+  color: var(--black);
+  background-color: #FF8989;
+}
+#input-form > div.consentChoice2.checked {
+  color: var(--black);
+  background-color: #FF8989;
+  border: 2px solid #FF6962;
+}
+
+#input-form > div.consentChoice3:hover {
+  color: var(--black);
+  background-color: #7ABD91;
+  border: 2px solid #5FA777;
+}
+#input-form > div.consentChoice3:focus-within {
+  color: var(--black);
+  background-color: #7ABD91;
+}
+#input-form > div.consentChoice3.checked {
+  color: var(--black);
+  background-color: #7ABD91;
+  border: 2px solid #5FA777;
+}
+
 
 #input-form > div > input {
   width: 20%;
